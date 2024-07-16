@@ -9,6 +9,9 @@ export function AudioWidget(settings = {}, monitor = 0) {
 		children: [
 			Widget.Slider({
 				orientation: 1,
+				min: 0,
+				max: 1.5,
+				inverted: true,
 				vexpand: true,
 				drawValue: false,
 				onChange: ({ value }) => Audio[type].volume = value,
@@ -18,7 +21,7 @@ export function AudioWidget(settings = {}, monitor = 0) {
 				label: Audio[type].bind('volume').as(volume => `${Math.floor(volume * 100)}%`),
 			}),
 			Widget.Icon({
-				//icon: icon,
+				icon: icon,
 				className: 'audio-slider-icon',
 			}),
 		]
@@ -70,9 +73,9 @@ export function AudioWidget(settings = {}, monitor = 0) {
 	});
 
 	const AudioButton = () => Widget.ToggleButton({
-		className: 'audio-button',
+		className: 'button',
 		child: Widget.Icon({
-			//icon: settings.audio.icon.button,
+			icon: settings.audio.icon.button,
 			className: 'audio-slider-icon',
 		}),
 		onToggled: ({ active }) => {

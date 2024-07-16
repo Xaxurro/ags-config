@@ -1,11 +1,39 @@
-active-workspace {
-	color: #222222;
+.status-bar {
+	background-color: #000000;
 }
 
-calendar-button {
-	border: 0;
+.button {
+	background-color: #000000;
+	border: none;
+	border-radius: 0px;
 }
 
-audio-slider-icon {
+.audio-slider-icon {
 	color: #FFFFFF
+}
+
+.alarm {
+	font-size: 3px
+}
+
+.alarm.finished {
+	font-size: 10px;
+	color: #E01B24;
+}
+
+.empty {
+	font-family: 'HackNerdFontMono';
+	font-size: 20px;
+}
+
+.active {
+	font-family: 'HackNerdFontMono';
+	font-size: 40px;
+	color: #E01B24;
+}
+
+.focused {
+	font-family: 'HackNerdFontMono';
+	font-size: 60px;
+	color: #E01B24;
 }

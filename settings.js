@@ -1,18 +1,20 @@
 export const settings = {
 	gtkTheme: 'Flat-Remix-GTK-Red-Darkest-Solid-NoBorder',
 	workspace: {
+		height	: 60,
+		width	: 40,
 		listSize: 10,
-		default: {
-			icon	: '',
-			css	: 'font-size: 30px; color: white',
+		empty: {
+			icon	 : '',
+			className: 'empty',
 		},
 		active: {
-			icon	: '',
-			css	: 'font-size: 40px; color: red',
+			icon	 : '',
+			className: 'active',
 		},
 		focused: {
-			icon	: '',
-			css	: 'font-size: 60px; color: red',
+			icon	 : '',
+			className: 'focused',
 		},
 	},
 	notifications: {
@@ -24,12 +26,12 @@ export const settings = {
 			width	: 100,
 		},
 		icon: {
-			button		: 'audio-button-symbolic',
-			microphone	: 'microphone-symbolic',
-			speaker		: 'speaker-symbolic',
+			button		: 'audio-button',
+			microphone	: 'microphone',
+			speaker		: 'speaker',
 		}
 	},
 	when: {
-		futureDays: 2,
+		futureDays: 3,
 	},
 };

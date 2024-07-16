@@ -50,7 +50,7 @@ export function TimeWidget(settings, monitor = 1) {
 	});
 
 	const CalendarButton = () => Widget.Button({
-		className: 'calendar-button',
+		className: 'button calendar',
 		child: DateBox(),
 		onPrimaryClick: () => {
 			CalendarWindow.visible = !CalendarWindow.visible;

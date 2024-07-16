@@ -15,8 +15,6 @@ export function AlarmWidget(monitor = 0) {
 		poll: [1000, 'date +%s', secondsSinceEpoch => parseInt(secondsSinceEpoch)]
 	});
 
-	var shouldContinue = false;
-
 	const getTargetTime = () => {
 		return getRemainingTimeInSeconds() + parseInt(Utils.exec('date +%s'));
 	};
@@ -24,21 +22,28 @@ export function AlarmWidget(monitor = 0) {
 	const getRemainingTimeInSeconds = () => {
 		return AlarmTimeSelectorSeconds.value + (AlarmTimeSelectorMinutes.value * 60) + (AlarmTimeSelectorHours.value * 3600);
 	}
+
+	const getRemainingTimeInPercentage = (currentTime = 0) => {
+		if (targetTime.value === 0) return 0;
+		const percentage = (currentTime - startTime.value) / (targetTime.value - startTime.value);
+		if (percentage >= 1) {
+			return 1;
+		}
+		return percentage;
+	}
 	
 	const AlarmButtonStart = Widget.Button({
 		label: 'start',
 		onClicked: () => {
 			targetTime.setValue(getTargetTime());
 			startTime.setValue(currentTime.value);
-			AlarmButtonStop.set_property('active', true);
 		},
 	});
 
-	const AlarmButtonStop = Widget.ToggleButton({
+	const AlarmButtonStop = Widget.Button({
 		label: 'stop',
-		onToggled: ({ active }) => {
-			shouldContinue = active;
-			console.log('shouldContinue: ' + shouldContinue);
+		onClicked: () => {
+			targetTime.setValue(0);
 		},
 	});
 
@@ -94,21 +99,25 @@ export function AlarmWidget(monitor = 0) {
 		visible: false,
 	});
 
-	return Widget.Button({
-		className: 'alarm-button',
-		child: Widget.CircularProgress({
-			rounded: true,
-			startAt: 0,
-			endAt: 1,
-			value: currentTime.bind().as(currentTime => {
-				if (targetTime.value === 0) return 0;
-				const percentage = (currentTime - startTime.value) / (targetTime.value - startTime.value);
-				if (percentage >= 1) {
-					return 1;
-				}
-				return percentage;
-			}),
+	const Alarm = Widget.CircularProgress({
+		className: `alarm`,
+		rounded: true,
+		startAt: 0,
+		endAt: 1,
+		value: currentTime.bind().as(currentTime => {
+			let percentage = getRemainingTimeInPercentage(currentTime);
+			if (percentage === 1) {
+				Alarm.toggleClassName('finished', true);
+			} else {
+				Alarm.toggleClassName('finished', false);
+			}
+			return percentage;
 		}),
+	});
+
+	return Widget.Button({
+		className: 'button alarm',
+		child: Alarm,
 		onPrimaryClick: () => {
 			AlarmWindow.visible = !AlarmWindow.visible;
 		},
