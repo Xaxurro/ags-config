@@ -1,9 +1,8 @@
 const Audio = await Service.import('audio');
 const Mpris = await Service.import('mpris');
-App.addIcons(`${App.configDir}/assets`);
 
 export function AudioWidget(settings = {}, monitor = 0) {
-	const AudioSlider = (type = 'speaker', icon = 'speaker') => Widget.Box({
+	const AudioSlider = (type = 'speaker', icon) => Widget.Box({
 		vertical: true,
 		hexpand: true,
 		children: [
@@ -22,7 +21,7 @@ export function AudioWidget(settings = {}, monitor = 0) {
 			}),
 			Widget.Icon({
 				icon: icon,
-				className: 'audio-slider-icon',
+				size: 20,
 			}),
 		]
 	});
@@ -76,9 +75,10 @@ export function AudioWidget(settings = {}, monitor = 0) {
 		className: 'button',
 		child: Widget.Icon({
 			icon: settings.audio.icon.button,
-			className: 'audio-slider-icon',
+			size: 20,
 		}),
 		onToggled: ({ active }) => {
+
 			AudioWindow.visible = active;
 		}
 	});

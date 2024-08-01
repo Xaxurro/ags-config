@@ -1,4 +1,4 @@
-import { WhenTasksBox } from '../pop_ups/when_tasks.js'
+import { WhenTaskWindow } from '../pop_ups/when_tasks.js'
 
 export function TimeWidget(settings, monitor = 1) {
 	const date = Variable('', {
@@ -40,14 +40,8 @@ export function TimeWidget(settings, monitor = 1) {
 		visible: false,
 	});
 
-	const WhenWindow = Widget.Window({
-		name: `when${monitor}`,
-		monitor: monitor,
-		anchor: ['top'],
-		layer: 'overlay',
-		child: WhenTasksBox(),
-		visible: false,
-	});
+	const whenData = Variable(Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2));
+	const WhenWindow = WhenTaskWindow(monitor, whenData);
 
 	const CalendarButton = () => Widget.Button({
 		className: 'button calendar',
@@ -56,6 +50,7 @@ export function TimeWidget(settings, monitor = 1) {
 			CalendarWindow.visible = !CalendarWindow.visible;
 		},
 		onSecondaryClick: () => {
+			whenData.setValue(Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2));
 			WhenWindow.visible = !WhenWindow.visible;
 		},
 		onMiddleClick: () => {

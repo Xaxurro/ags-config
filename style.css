@@ -8,10 +8,6 @@
 	border-radius: 0px;
 }
 
-.audio-slider-icon {
-	color: #FFFFFF
-}
-
 .alarm {
 	font-size: 3px
 }
@@ -21,19 +17,23 @@
 	color: #E01B24;
 }
 
-.empty {
+.workspace {
 	font-family: 'HackNerdFontMono';
+}
+
+.workspace.empty {
 	font-size: 20px;
 }
 
-.active {
-	font-family: 'HackNerdFontMono';
+.workspace.active {
 	font-size: 40px;
 	color: #E01B24;
 }
 
-.focused {
-	font-family: 'HackNerdFontMono';
+.workspace.focused {
 	font-size: 60px;
 	color: #E01B24;
+}
+
+.system-tray-icon {
 }

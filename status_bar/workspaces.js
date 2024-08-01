@@ -12,16 +12,16 @@ export function WorkspacesWidget (settings, Hyprland) {
 	
 		for (let i = 1; i < settings.workspace.listSize + 1; i++) {
 			let icon	= settings.workspace.empty.icon;
-			let className	= settings.workspace.empty.className;
+			let className	= 'workspace empty';
 	
 			if (HyprlandWorkspaceIds.includes(i)) {
 				icon		= settings.workspace.active.icon;
-				className	= settings.workspace.active.className;
+				className	= 'workspace active';
 			}
 	
 			if (i == focusId) {
 				icon		= settings.workspace.focused.icon;
-				className	= settings.workspace.focused.className;
+				className	= 'workspace focused';
 			}
 	
 			workspaces.push(
@@ -43,7 +43,7 @@ export function WorkspacesWidget (settings, Hyprland) {
 	}
 
 	return Widget.Box({
-		spacing: 8,
+		spacing: 0,
 		children: workspaceLabels(),
 	}).hook(Hyprland, (self, ipcEvent) => {
 		const ipcEvents = ['workspace', 'movewindow', 'activewindow', 'focusedmon', 'moveworkspace', 'createworkspace', 'destroyworkspace']

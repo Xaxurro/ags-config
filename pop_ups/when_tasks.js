@@ -1,22 +1,25 @@
 import { settings } from '../settings.js'
 
-export function WhenTasksBox() {
-	const whenDataArray = () => {
-		const whenData = Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2);
+export function WhenTaskWindow(monitor = 0, whenDataVar) {
 
-		return whenData;
+	const addChildrenToWhenList = (widget) => {
+		const whenData = whenDataVar.value;
+		for (let i = 0; i < whenData.length; i++) {
+			const label = Widget.Label({
+				hpack: 'start',
+				label: whenData[i],
+			})
+			widget.add(label);
+		}
+		console.log(widget);
 	}
 
 	const WhenList = () => Widget.ListBox({
 		setup(self) {
-			const whenData = whenDataArray();
-			for (let i = 0; i < whenData.length; i++) {
-				self.add(Widget.Label({
-					hpack: 'start',
-					label: whenData[i],
-				}));
-			}
+			addChildrenToWhenList(self);
 		}
+	}).hook(whenDataVar, self => {
+		//addChildrenToWhenList(self);
 	});
 
 	const WhenListHeader = () => Widget.Box({
@@ -26,11 +29,21 @@ export function WhenTasksBox() {
 		})
 	});
 
-	return Widget.Box({
+	const WhenTaskBox = Widget.Box({
 		vertical: true,
 		children: [
 			WhenListHeader(),
 			WhenList(),
 		]
 	});
+
+	return Widget.Window({
+		name: `when${monitor}`,
+		monitor: monitor,
+		anchor: ['top'],
+		layer: 'overlay',
+		child: WhenTaskBox,
+		visible: false,
+	});
+
 }

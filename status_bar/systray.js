@@ -1,7 +1,7 @@
 const SystemTray = await Service.import('systemtray');
 export function SystemTrayWidget(settings) {
 	const SystemTrayItem = item => Widget.Button({
-		className: 'system-tray-icon',
+		className: 'button',
 		child: Widget.Icon().bind('icon', item, 'icon'),
 		tooltipMarkup: item.bind('tooltip_markup'),
 		onPrimaryClick: (_, event) => item.activate(event),

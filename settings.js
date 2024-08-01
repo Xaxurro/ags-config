@@ -2,19 +2,16 @@ export const settings = {
 	gtkTheme: 'Flat-Remix-GTK-Red-Darkest-Solid-NoBorder',
 	workspace: {
 		height	: 60,
-		width	: 40,
+		width	: 60,
 		listSize: 10,
 		empty: {
 			icon	 : '',
-			className: 'empty',
 		},
 		active: {
 			icon	 : '',
-			className: 'active',
 		},
 		focused: {
 			icon	 : '',
-			className: 'focused',
 		},
 	},
 	notifications: {

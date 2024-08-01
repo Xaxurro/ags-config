@@ -1,3 +1,4 @@
+App.addIcons(`${App.configDir}/assets`);
 const Hyprland = await Service.import('hyprland');
 import { settings } from './settings.js'
 import { TimeWidget } from './status_bar/time.js'
