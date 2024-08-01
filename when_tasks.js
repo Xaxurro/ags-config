@@ -1,4 +1,4 @@
-import { settings } from '../settings.js'
+import { settings } from './settings.js'
 
 export function WhenTaskWindow(monitor = 0, whenDataVar) {
 

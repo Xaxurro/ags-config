@@ -26,12 +26,8 @@ export function WorkspacesWidget (settings, Hyprland) {
 	
 			workspaces.push(
 				Widget.Box({
-					css: 
-						`min-width: ${settings.workspace.width}px;` +
-						`min-height: ${settings.workspace.height}px;`
-					,
+					className: 'workspace-box',
 					child: Widget.Label({
-						hexpand		: true,
 						vexpand		: true,
 						label		: icon,
 						className	: className,

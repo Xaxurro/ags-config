@@ -35,5 +35,10 @@
 	color: #E01B24;
 }
 
+.workspace-box {
+	min-height: 60;
+	min-width: 60;
+}
+
 .system-tray-icon {
 }

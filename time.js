@@ -1,4 +1,4 @@
-import { WhenTaskWindow } from '../pop_ups/when_tasks.js'
+import { WhenTaskWindow } from './when_tasks.js'
 
 export function TimeWidget(settings, monitor = 1) {
 	const date = Variable('', {
