@@ -1,24 +1,24 @@
 import { settings } from './settings.js'
 
-export function WhenTaskWindow(monitor = 0, whenDataVar) {
+export function WhenWindow(monitor = 0) {
+	const whenData = Variable(Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2));
 
 	const addChildrenToWhenList = (widget) => {
-		const whenData = whenDataVar.value;
-		for (let i = 0; i < whenData.length; i++) {
+		const tasks = whenData.value;
+		for (let i = 0; i < tasks.length; i++) {
 			const label = Widget.Label({
 				hpack: 'start',
-				label: whenData[i],
+				label: tasks[i],
 			})
 			widget.add(label);
 		}
-		console.log(widget);
 	}
 
 	const WhenList = () => Widget.ListBox({
 		setup(self) {
 			addChildrenToWhenList(self);
 		}
-	}).hook(whenDataVar, self => {
+	}).hook(whenData, self => {
 		//addChildrenToWhenList(self);
 	});
 

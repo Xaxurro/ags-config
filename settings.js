@@ -1,8 +1,6 @@
 export const settings = {
 	gtkTheme: 'Flat-Remix-GTK-Red-Darkest-Solid-NoBorder',
 	workspace: {
-		height	: 60,
-		width	: 60,
 		listSize: 10,
 		empty: {
 			icon	 : '',

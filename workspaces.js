@@ -28,6 +28,7 @@ export function WorkspacesWidget (settings, Hyprland) {
 				Widget.Box({
 					className: 'workspace-box',
 					child: Widget.Label({
+						hexpand		: true,
 						vexpand		: true,
 						label		: icon,
 						className	: className,

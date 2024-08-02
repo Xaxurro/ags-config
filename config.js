@@ -1,15 +1,15 @@
 App.addIcons(`${App.configDir}/assets`);
 const Hyprland = await Service.import('hyprland');
 import { settings } from './settings.js'
-import { TimeWidget } from './time.js'
+import { TimeWidget } from './time/main.js'
 import { WorkspacesWidget } from './workspaces.js'
 import { SystemTrayWidget } from './systray.js'
-import { AudioWidget } from './sound.js'
-import { AlarmWidget } from './alarm.js';
+import { AudioWidget } from './sound/volume.js'
+import { AlarmWidget } from './time/alarm/main.js';
 
 const StartWidget = (monitor = 0) => Widget.Box({
 	children: [
-		TimeWidget(settings, monitor),
+		TimeWidget(monitor),
 		AlarmWidget(monitor),
 	]
 })
