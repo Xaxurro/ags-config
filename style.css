@@ -36,8 +36,8 @@
 }
 
 .workspace-box {
-	min-height: 60;
-	min-width: 60;
+	min-height: 60px;
+	min-width: 60px;
 }
 
 .system-tray-icon {
