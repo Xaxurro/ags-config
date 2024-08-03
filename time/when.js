@@ -1,4 +1,4 @@
-import { settings } from './settings.js'
+import { settings } from '../settings.js'
 
 export function WhenWindow(monitor = 0) {
 	const whenData = Variable(Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2));
