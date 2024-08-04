@@ -1,8 +1,8 @@
+App.addIcons(`${App.configDir}/assets`);
 const Audio = await Service.import('audio');
-const Mpris = await Service.import('mpris');
 
 export function AudioWidget(settings = {}, monitor = 0) {
-	const AudioSlider = (type = 'speaker', icon) => Widget.Box({
+	const AudioSlider = (type = 'speaker', icon = '') => Widget.Box({
 		vertical: true,
 		hexpand: true,
 		children: [
@@ -20,53 +20,26 @@ export function AudioWidget(settings = {}, monitor = 0) {
 				label: Audio[type].bind('volume').as(volume => `${Math.floor(volume * 100)}%`),
 			}),
 			Widget.Icon({
+				css: 'color: #000000;',
 				icon: icon,
 				size: 20,
 			}),
 		]
 	});
 
-	// TODO Terminar 
-	const PlayerList = () => {
-		const PlayerListItems = [];
-		for (var player in Mpris.players) {
-			//Widget.Button({
-				//onClicked: () => player.playPause(),
-				//child: Widget.Label().hook(player, label => {
-					//const { track_artists, track_title } = player;
-					//label.label = `${track_artists.join(', ')} - ${track_title}`;
-				//}),
-			//}),
-		}
-
-		return Widget.Box({
-			children: PlayerListItems,
-		});
-	};
-
-	const Players = Widget.ListBox({
-		setup(self) {
-			self.add(PlayerList())
-		}
-	})
-	//
-
 	const AudioWindow = Widget.Window({
 		name: `audio${monitor}`,
 		monitor: monitor,
+		className: 'window',
 		visible: false,
 		anchor: ['top', 'right'],
-		margins: [20, 10],
+		margins: [20, 20],
 		layer: 'overlay',
 		child: Widget.Box({
-			css: 
-				`min-width: ${settings.audio.window.width}px;` +
-				`min-height: ${settings.audio.window.height}px;`
-			,
+			className: 'audio-box',
 			children: [
 				AudioSlider('speaker', settings.audio.icon.speaker),
 				AudioSlider('microphone', settings.audio.icon.microphone),
-				Players,
 			]
 		}),
 	});
@@ -74,6 +47,7 @@ export function AudioWidget(settings = {}, monitor = 0) {
 	const AudioButton = () => Widget.ToggleButton({
 		className: 'button',
 		child: Widget.Icon({
+			css: 'color: #000000;',
 			icon: settings.audio.icon.button,
 			size: 20,
 		}),

@@ -16,15 +16,14 @@ export const settings = {
 		icon: 'preferences-system-notifications-symbolic'
 	},
 	audio: {
-		window: {
-			height	: 200,
-			width	: 100,
-		},
 		icon: {
-			button		: 'audio-button',
-			microphone	: 'microphone',
-			speaker		: 'speaker',
+			button		: 'audio-button-symbolic',
+			microphone	: 'microphone-symbolik',
+			speaker		: 'speaker-symbolic',
 		}
+	},
+	music: {
+		icon	: 'music-symbolic'
 	},
 	when: {
 		futureDays: 3,

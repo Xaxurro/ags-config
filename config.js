@@ -6,6 +6,7 @@ import { WorkspacesWidget } from './workspaces.js'
 import { SystemTrayWidget } from './systray.js'
 import { AudioWidget } from './sound/volume.js'
 import { AlarmWidget } from './time/alarm/main.js';
+import { MusicWidget } from './sound/music.js';
 
 const StartWidget = (monitor = 0) => Widget.Box({
 	children: [
@@ -23,6 +24,7 @@ const CenterWidget = (settings) => Widget.Box({
 const EndWidget = (monitor = 0) => Widget.Box({
 	hpack: 'end',
 	children: [
+		MusicWidget(settings, monitor),
 		AudioWidget(settings, monitor),
 		SystemTrayWidget(settings),
 	]

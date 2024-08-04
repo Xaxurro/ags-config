@@ -2,10 +2,26 @@
 	background-color: #000000;
 }
 
+.window {
+	background-color: #000000;
+	border: 2px solid #E01B24;
+	border-radius: 0px;
+}
+
 .button {
 	background-color: #000000;
 	border: none;
 	border-radius: 0px;
+}
+
+.ui-button {
+	background-color: #000000;
+	border: 2px solid #E01B24;
+	border-radius: 0px;
+}
+
+.audio {
+	color: #000000;
 }
 
 .alarm {
@@ -15,6 +31,10 @@
 .alarm.finished {
 	font-size: 10px;
 	color: #E01B24;
+}
+
+.alarm.disabled {
+	color: #000000;
 }
 
 .workspace {
@@ -38,6 +58,16 @@
 .workspace-box {
 	/*min-height: 60px;*/
 	min-width: 35px;
+}
+
+.music-box {
+	min-width: 200px;
+	min-height: 100px;
+}
+
+.audio-box {
+	min-width: 100px;
+	min-height: 200px;
 }
 
 .system-tray-icon {

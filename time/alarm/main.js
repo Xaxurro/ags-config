@@ -33,6 +33,7 @@ export function AlarmWidget(monitor = 0) {
 	}
 	
 	const AlarmButtonStart = Widget.Button({
+		className: 'ui-button',
 		label: 'start',
 		onClicked: () => {
 			targetTime.setValue(getTargetTime());
@@ -41,6 +42,7 @@ export function AlarmWidget(monitor = 0) {
 	});
 
 	const AlarmButtonStop = Widget.Button({
+		className: 'ui-button',
 		label: 'stop',
 		onClicked: () => {
 			targetTime.setValue(0);
@@ -48,6 +50,7 @@ export function AlarmWidget(monitor = 0) {
 	});
 
 	const AlarmButtonReset = Widget.Button({
+		className: 'ui-button',
 		label: 'reset',
 		onClicked: () => {
 			AlarmTimeSelectorSeconds.value = 0;
@@ -76,6 +79,8 @@ export function AlarmWidget(monitor = 0) {
 	});
 
 	const AlarmButtonBox = Widget.Box({
+		hexpand: true,
+		hpack: 'center',
 		children: [
 			AlarmButtonStart,
 			AlarmButtonStop,
@@ -94,13 +99,14 @@ export function AlarmWidget(monitor = 0) {
 	const AlarmWindow = Widget.Window({
 		name: `alarm${monitor}`,
 		monitor: monitor,
+		className: 'window',
 		layer: 'overlay',
 		child: AlarmBox,
 		visible: false,
 	});
 
 	const Alarm = Widget.CircularProgress({
-		className: `alarm`,
+		className: 'alarm',
 		rounded: true,
 		startAt: 0,
 		endAt: 1,
@@ -108,8 +114,11 @@ export function AlarmWidget(monitor = 0) {
 			let percentage = getRemainingTimeInPercentage(currentTime);
 			if (percentage === 1) {
 				Alarm.toggleClassName('finished', true);
+			} else if (percentage === 0) {
+				Alarm.toggleClassName('disabled', true);
 			} else {
 				Alarm.toggleClassName('finished', false);
+				Alarm.toggleClassName('disabled', false);
 			}
 			return percentage;
 		}),
