@@ -26,7 +26,7 @@ export function MusicWidget(settings = {}, monitor = 0) {
 		// Return name of file if downloaded with yt-dlp
 		if (mpd.track_artists[0] === "unknown artist") {
 			const ytDlpRegex = / \[.+]\..+$/
-			const omvRegex = /\((Official|Music|Video| |Letra|Full)+\)/i
+			const omvRegex = /\((Official|Audio|Music|Video| |Letra|Full)+\)/i
 			//const omvRegex = /\((?=.*\b(Official|Music|Video|Letra|Full)\b).{1,}\)/i
 			track = mpd.track_title.replace(ytDlpRegex, '');
 			track = track.replace(omvRegex, '');
@@ -86,17 +86,26 @@ export function MusicWidget(settings = {}, monitor = 0) {
 		self.label = songData();
 	}, 'player-changed');
 
+	const MusicStatusSong = Widget.Icon({
+		css: 'color: #000000;',
+		icon: settings.music.icon,
+		size: 20,
+	}).hook(Mpris, (self, busName) => {
+		const mpd = Mpris.getPlayer('mpd');
+		if (!mpd || mpd.play_back_status == 'Paused') {
+			self.css = 'color: #000000;';
+		} else {
+			self.css = 'color: #FFFFFF;';
+		}
+	}, 'player-changed');
+
 	return Widget.Button({
 		className: 'button',
 		child: Widget.Box({
 			spacing: 8,
 			children: [
 				MusicCurrentSong,
-				Widget.Icon({
-					css: 'color: #000000;',
-					icon: settings.music.icon,
-					size: 20,
-				})
+				MusicStatusSong
 			]
 		}),
 		onPrimaryClick: () => {
