@@ -89,15 +89,15 @@ export function MusicWidget(settings = {}, monitor = 0) {
 	}, 'player-changed');
 
 	const MusicStatusSong = Widget.Icon({
-		css: 'color: #000000;',
+		className: 'music-icon-disabled',
 		icon: settings.music.icon,
 		size: 20,
 	}).hook(Mpris, (self, busName) => {
 		const mpd = Mpris.getPlayer('mpd');
 		if (!mpd || mpd.play_back_status == 'Paused') {
-			self.css = 'color: #000000;';
+			self.class_name = 'music-icon-disabled';
 		} else {
-			self.css = 'color: #FFFFFF;';
+			self.class_name = 'music-icon-enabled';
 		}
 	}, 'player-changed');
 

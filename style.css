@@ -70,5 +70,13 @@
 	min-height: 200px;
 }
 
+.music-icon-enabled {
+	color: #000000;
+}
+
+.music-icon-disabled {
+	color: #FFFFFF;
+}
+
 .system-tray-icon {
 }
