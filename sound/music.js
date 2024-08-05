@@ -112,6 +112,11 @@ export function MusicWidget(settings = {}, monitor = 0) {
 		}),
 		onPrimaryClick: () => {
 			MusicWindow.visible = !MusicWindow.visible;
+		},
+		onSecondaryClick: () => {
+			Utils.exec('mpc repeat');
+			const repeat = Utils.exec('mpc status "%repeat%"')
+			MusicCurrentSong.toggleClassName('music-repeat', repeat == 'on')
 		}
 	});
 }
