@@ -26,10 +26,12 @@ export function MusicWidget(settings = {}, monitor = 0) {
 		// Return name of file if downloaded with yt-dlp
 		if (mpd.track_artists[0] === "unknown artist") {
 			const ytDlpRegex = / \[.+]\..+$/
-			const omvRegex = /\((Official|Audio|Music|Video| |Letra|Full)+\)/i
-			//const omvRegex = /\((?=.*\b(Official|Music|Video|Letra|Full)\b).{1,}\)/i
 			track = mpd.track_title.replace(ytDlpRegex, '');
-			track = track.replace(omvRegex, '');
+
+			const nonTrackTitleWords = [' ', 'Official', 'Oficial', 'Audio', 'Music', 'Video', 'Clip', 'Letra', 'Full'].join('|');
+			const nonTrackTitleRegex = new RegExp('\\((' + nonTrackTitleWords + ')+\\)', 'i');
+			track = track.replace(nonTrackTitleRegex, '');
+
 			return track;
 		}
 
