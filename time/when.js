@@ -1,39 +1,32 @@
 import { settings } from '../settings.js'
 
 export function WhenWindow(monitor = 0) {
-	const whenData = Variable(Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2));
-
-	const addChildrenToWhenList = (widget) => {
-		const tasks = whenData.value;
-		for (let i = 0; i < tasks.length; i++) {
-			const label = Widget.Label({
-				hpack: 'start',
-				label: tasks[i],
-			})
-			widget.add(label);
-		}
-	}
-
-	const WhenList = () => Widget.ListBox({
+	const WhenList = Widget.ListBox({
 		setup(self) {
-			addChildrenToWhenList(self);
+			const tasks = Utils.exec(`/usr/bin/when --past=0 --future=${settings.when.futureDays}`).split('\n').splice(2);
+			for (let i = 0; i < tasks.length; i++) {
+				const label = Widget.Label({
+					hpack: 'start',
+					label: tasks[i],
+				})
+				self.add(label);
+			}
 		}
-	}).hook(whenData, self => {
-		//addChildrenToWhenList(self);
 	});
 
-	const WhenListHeader = () => Widget.Box({
-		child: Widget.Label({
-			hpack: 'start',
-			label: 'Weas que tengo que hacer',
-		})
+
+	const WhenListHeader = () => Widget.Label({
+		className: 'when',
+		hpack: 'fill',
+		label: 'Weas que tengo que hacer',
 	});
 
 	const WhenTaskBox = Widget.Box({
+		className: 'when box',
 		vertical: true,
 		children: [
 			WhenListHeader(),
-			WhenList(),
+			WhenList,
 		]
 	});
 

@@ -6,7 +6,7 @@ export function TimeWidget(monitor = 0) {
 
 	const calendarWindow = CalendarWindow(monitor);
 
-	const whenWindow = WhenWindow(monitor);
+	let whenWindow = WhenWindow(monitor);
 
 	const CalendarButton = () => Widget.Button({
 		className: 'button calendar',
@@ -15,6 +15,9 @@ export function TimeWidget(monitor = 0) {
 			calendarWindow.visible = !calendarWindow.visible;
 		},
 		onSecondaryClick: () => {
+			if (whenWindow.visible == false) {
+				whenWindow = WhenWindow(monitor);
+			}
 			whenWindow.visible = !whenWindow.visible;
 		},
 		onMiddleClick: () => {

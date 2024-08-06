@@ -84,3 +84,13 @@
 
 .system-tray-icon {
 }
+
+.when {
+	background-color: #E01B24;
+}
+
+.when.box {
+	background-color: #000000;
+	border: 2px solid #E01B24;
+	border-radius: 0px;
+}

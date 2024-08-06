@@ -28,7 +28,7 @@ export function MusicWidget(settings = {}, monitor = 0) {
 			const ytDlpRegex = / \[.+]\..+$/
 			track = mpd.track_title.replace(ytDlpRegex, '');
 
-			const nonTrackTitleWords = [' ', 'Official', 'Oficial', 'Audio', 'Music', 'Video', 'Clip', 'Letra', 'Full'].join('|');
+			const nonTrackTitleWords = [' ', 'Official', 'Oficial', 'Audio', 'Music', 'Video', 'Clip', 'Letra', 'Lyric', 'Full', 'HD'].join('|');
 			const nonTrackTitleRegex = new RegExp('\\((' + nonTrackTitleWords + ')+\\)', 'i');
 			track = track.replace(nonTrackTitleRegex, '');
 
